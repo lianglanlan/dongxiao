@@ -164,6 +164,11 @@ body {
   background-size: 100% auto;
   overflow: hidden;
   z-index: 0;
+  &.zoom{
+    &:before{
+      transform: scale(1.5);
+    }
+  }
   &:before {
     content: '';
     position: absolute;
@@ -174,6 +179,7 @@ body {
     background: url(../images/10-1.png) no-repeat center bottom;
     background-size: 100% auto;
     overflow: hidden;
+    transition: transform .5s;
   }
   &:after {
     content: '';
