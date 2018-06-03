@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,shrink-to-fit=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>宣传页</title>
+	<link rel="stylesheet" href="./css/style.css">
+	<link rel="stylesheet" href="./css/swiper-4.2.6.min.css">
+	<script src="./js/swiper-4.2.6.min.js"></script>
+	<script src="./js/jquery-1.11.3.min.js"></script>
+</head>
+
+<body>
+	<audio src="./4.mp3" autoplay loop preload id="musicAudio"></audio>
+	<div class="arrow"></div>
+	<div class="swiper-container1" style="height: 100%">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide slider1">
+				<div class="swiper-container2">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide slider1-1"></div>
+						<div class="swiper-slide slider1-2"></div>
+						<div class="swiper-slide slider1-3"></div>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-slide slider2" style="height: 100%">
+				<img src="./images/2.png" alt="" class="slider-img">
+			</div>
+			<div class="swiper-slide slider3" style="height: 100%">
+				<img src="./images/3.png" alt="" class="slider-img">
+			</div>
+			<div class="swiper-slide slider4" style="height: 100%">
+				<img src="./images/4.png" alt="" class="slider-img">
+			</div>
+			<div class="swiper-slide slider5" style="height: 100%">
+				<img src="./images/5.png" alt="" class="slider-img">
+			</div>
+			<div class="swiper-slide slider6" style="height: 100%">
+				<img src="./images/6.png" alt="" class="slider-img">
+			</div>
+			<div class="swiper-slide slider7" style="height: 100%">
+				<img src="./images/7.png" alt="" class="slider-img">
+			</div>
+			<div class="swiper-slide slider8" style="height: 100%"></div>
+			<div class="swiper-slide slider9" style="height: 100%"></div>
+			<div class="swiper-slide slider10" style="height: 100%">
+				<div class="slider10-btn"></div>
+			</div>
+		</div>
+	</div>
+	<script>
+		var mySwiper1 = new Swiper('.swiper-container1', {
+			direction: 'vertical',
+			slidesPerView: 'auto',
+			on: {
+				slideChangeTransitionEnd: function() {
+					var activeSlide = this.slides[this.activeIndex]
+					if (activeSlide.classList.contains('slider10') || activeSlide.classList.contains('slider11')) {
+						$('.arrow').hide()
+					} else {
+						$('.arrow').show()
+					}
+				},
+				slideChangeTransitionStart: function() {
+					$('.arrow').hide()
+				},
+			}
+		})
+		var mySwiper2 = new Swiper('.swiper-container2', { //子swiper
+			direction: 'vertical',
+			nested: true,
+			freeMode: true,
+			slidesPerView: 'auto',
+			resistanceRatio: 0,
+			spaceBetween: -2,
+			on: {
+				slideChangeTransitionEnd: function() {
+					if (this.progress == 1) {
+						$('.arrow').show()
+					} else {
+						$('.arrow').hide()
+					}
+				},
+			}
+		})
+		$('.arrow').on('click', function() {
+			mySwiper1.slideNext()
+		})
+		$('.slider10-btn').on('click', function() {
+			mySwiper1.appendSlide('<div class="swiper-slide slider11" style="height: 100%">\n' +
+				'            <div class="slider11-content">\n' +
+				'                <img src="./images/11-1.png" alt="">\n' +
+				'                <img src="./images/11-2.png" alt="" class="slider11-content2">\n' +
+				'                <div class="slider11-btn"></div>\n' +
+				'            </div>\n' +
+				'        </div>')
+			mySwiper1.slideNext()
+		})
+		$('.swiper-container1').on('click', '.slider11-btn', function() {
+			$('.slider11-content2').addClass('show');
+		})
+		//--创建页面监听，等待微信端页面加载完毕 触发音频播放
+		var audio = document.getElementById('musicAudio');
+		document.addEventListener('DOMContentLoaded', function() {
+			function audioAutoPlay() {
+				audio.play();
+				document.addEventListener("WeixinJSBridgeReady", function() {
+					audio.play();
+				}, false);
+			}
+			audioAutoPlay();
+		});
+	</script>
+</body>
+
+</html>
