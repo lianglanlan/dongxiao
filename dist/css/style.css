@@ -132,6 +132,10 @@ body {
           animation: arrow .8s linear infinite alternate;
 }
 
+.arrow.disabled {
+  pointer-events: none;
+}
+
 .slider1 {
   background-color: #00b4d4;
 }
@@ -222,6 +226,25 @@ body {
   overflow: hidden;
 }
 
+.slider8:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(../images/8-2.png?v=aa3282c1) no-repeat center bottom;
+  background-size: 100% auto;
+  overflow: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 1.5s;
+  transition: opacity 1.5s;
+}
+
+.slider8.show:after {
+  opacity: 1;
+}
+
 .slider9 {
   background: url(../images/9.png?v=ad3cff69) no-repeat center bottom #007fa5;
   background-size: 100% auto;
@@ -236,9 +259,9 @@ body {
 }
 
 .slider10.zoom:before {
-  -webkit-transform: scale(1.5);
-      -ms-transform: scale(1.5);
-          transform: scale(1.5);
+  -webkit-transform: scale(2.2);
+      -ms-transform: scale(2.2);
+          transform: scale(2.2);
 }
 
 .slider10:before {
@@ -251,10 +274,10 @@ body {
   background: url(../images/10-1.png?v=05fb6159) no-repeat center bottom;
   background-size: 100% auto;
   overflow: hidden;
-  -webkit-transition: -webkit-transform .5s;
-  transition: -webkit-transform .5s;
-  transition: transform .5s;
-  transition: transform .5s, -webkit-transform .5s;
+  -webkit-transition: -webkit-transform 1.2s;
+  transition: -webkit-transform 1.2s;
+  transition: transform 1.2s;
+  transition: transform 1.2s, -webkit-transform 1.2s;
 }
 
 .slider10:after {
@@ -314,4 +337,42 @@ body {
   margin: 0 auto 16%;
   width: 175px;
   height: 70px;
+}
+
+.music-btn {
+  position: fixed;
+  right: 0;
+  top: 30px;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px 20px;
+  background-image: url(../images/music01.png?v=5ee2a5d2);
+  z-index: 10;
+}
+
+.music-btn.play {
+  -webkit-animation: music 1s infinite linear;
+          animation: music 1s infinite linear;
+}
+
+.music-btn.pause {
+  -webkit-animation: none;
+          animation: none;
+  background-image: url(../images/music02.png?v=dfa26448);
+}
+
+@-webkit-keyframes music {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes music {
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
 }

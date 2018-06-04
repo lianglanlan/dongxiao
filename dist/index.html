@@ -13,7 +13,9 @@
 </head>
 
 <body>
-	<audio src="./4.mp3" autoplay loop preload id="musicAudio"></audio>
+	<div class="music-btn">
+		<audio src="./4.mp3" autoplay loop preload id="musicAudio"></audio>
+	</div>
 	<div class="arrow"></div>
 	<div class="swiper-container1" style="height: 100%">
 		<div class="swiper-wrapper">
@@ -56,19 +58,18 @@
 			direction: 'vertical',
 			slidesPerView: 'auto',
 			on: {
-				slideChangeTransitionEnd: function() {
+				slideChangeTransitionStart: function() {
 					var activeSlide = this.slides[this.activeIndex]
 					if (activeSlide.classList.contains('slider10') || activeSlide.classList.contains('slider11')) {
 						$('.arrow').hide()
 					} else {
 						$('.arrow').show()
 					}
-					if (activeSlide.classList.contains('slider11')) {
-						$('.slider10').removeClass('zoom');
+					if (this.activeIndex == 7) {
+						$('.slider8').addClass('show');
+					} else {
+						$('.slider8').removeClass('show');
 					}
-				},
-				slideChangeTransitionStart: function() {
-					$('.arrow').hide()
 				},
 			}
 		})
@@ -89,8 +90,13 @@
 				},
 			}
 		});
+		//箭头点击事件
 		$('.arrow').on('click', function() {
-			mySwiper1.slideNext()
+			mySwiper1.slideNext();
+			$(this).addClass('disabled');
+			setTimeout(function() {
+				$('.arrow').removeClass('disabled');
+			}, 500)
 		});
 		$('.slider10-btn').on('click', function() {
 			if (mySwiper1.slides.length == 10) {
@@ -105,7 +111,8 @@
 			$(this).parent().addClass('zoom');
 			setTimeout(function() {
 				mySwiper1.slideNext()
-			}, 500)
+				$('.slider10').removeClass('zoom');
+			}, 1200)
 		});
 		$('.swiper-container1').on('click', '.slider11-btn', function() {
 			$('.slider11-content2').addClass('show');
@@ -115,12 +122,23 @@
 		document.addEventListener('DOMContentLoaded', function() {
 			function audioAutoPlay() {
 				audio.play();
+				$('.music-btn').addClass('play');
 				document.addEventListener("WeixinJSBridgeReady", function() {
 					audio.play();
+					$('.music-btn').addClass('play');
 				}, false);
 			}
 			audioAutoPlay();
 		});
+		//音乐按钮点击事件
+		$('.music-btn').on('click', function() {
+			if ($(this).hasClass('pause')) {
+				audio.play();
+			} else {
+				audio.pause();
+			}
+			$(this).toggleClass('pause');
+		})
 	</script>
 </body>
 
