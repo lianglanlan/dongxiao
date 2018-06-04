@@ -65,12 +65,14 @@
 					} else {
 						$('.arrow').show()
 					}
+				},
+				slideChangeTransitionEnd: function() {
 					if (this.activeIndex == 7) {
 						$('.slider8').addClass('show');
 					} else {
 						$('.slider8').removeClass('show');
 					}
-				},
+				}
 			}
 		})
 		var mySwiper2 = new Swiper('.swiper-container2', { //子swiper

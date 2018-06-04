@@ -165,7 +165,7 @@ body {
     background-size: 100% auto;
     overflow: hidden;
     opacity: 0;
-    transition: opacity 1.5s;
+    transition: opacity 1s;
   }
   &.show{
     &:after{

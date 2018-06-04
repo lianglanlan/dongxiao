@@ -221,7 +221,7 @@ body {
 }
 
 .slider8 {
-  background: url(../images/8.png?v=d63156df) no-repeat center bottom #00b4d4;
+  background: url(../images/8.png?v=d6eea509) no-repeat center bottom #00b4d4;
   background-size: 100% auto;
   overflow: hidden;
 }
@@ -233,12 +233,12 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url(../images/8-2.png?v=aa3282c1) no-repeat center bottom;
+  background: url(../images/8-2.png?v=fd5a706f) no-repeat center bottom;
   background-size: 100% auto;
   overflow: hidden;
   opacity: 0;
-  -webkit-transition: opacity 1.5s;
-  transition: opacity 1.5s;
+  -webkit-transition: opacity 1s;
+  transition: opacity 1s;
 }
 
 .slider8.show:after {
